@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Interaktif - Wujud Zat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-bounce {
+      animation: bounce 0.6s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-blue-50 font-sans min-h-screen flex flex-col items-center justify-center p-4 overflow-auto overflow-x-hidden">
+  <div id="start-screen" class="fixed inset-0 bg-blue-200 flex flex-col items-center justify-center z-50 fade-in">
+    
+    <h1 class="text-3xl font-bold text-blue-800 mb-4 animate-bounce">Selamat Datang di Game Wujud Zat!</h1>
+    <button onclick="startGame()" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Mulai Game</button>
+    <button onclick="window.location.href='file:///C:/Users/Acer/Downloads/IPA%20wujud%20zat/penjelasan_wujud_zat.html'" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-transform transform hover:scale-105">📘 Lihat Penjelasan Wujud Zat</button>
+    <a href='file:///C:/Users/Acer/Downloads/IPA%20wujud%20zat/percobaan_esputer.html'" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-transform transform hover:scale-105">🧪 Lihat Percobaan Es Puter</a>
+  </div>
+
+  <div id="game-container" class="bg-white rounded-xl shadow-xl p-6 w-full max-w-md fade-in animate__animated animate__fadeIn hidden">
+    <h1 class="text-2xl font-bold text-blue-700 mb-4 text-center">🎮 Game Interaktif: Wujud Zat</h1>
+    <div id="game"></div>
+  </div>
+
+  <script>
+    const questions = [
+      { item: "Es Batu", options: ["Padat", "Cair", "Gas"], answer: "Padat" },
+      { item: "Udara", options: ["Padat", "Cair", "Gas"], answer: "Gas" },
+      { item: "Air Minum", options: ["Padat", "Cair", "Gas"], answer: "Cair" },
+      { item: "Balok Kayu", options: ["Padat", "Cair", "Gas"], answer: "Padat" },
+      { item: "Uap Air", options: ["Padat", "Cair", "Gas"], answer: "Gas" },
+    ];
+
+    let currentQuestion = 0;
+    let userAnswers = [];
+    const gameContainer = document.getElementById("game");
+    const gameBox = document.getElementById("game-container");
+
+    function startGame() {
+      document.getElementById('start-screen').style.display = 'none';
+      gameBox.classList.remove('hidden');
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      gameContainer.innerHTML = `
+        <h2 class="text-xl font-semibold text-center mb-4">Soal ${currentQuestion + 1} dari ${questions.length}</h2>
+        }[q.item]}" alt="${q.item}" class="mx-auto mb-4 w-24">
+        <p class="mb-4 text-center font-medium text-base md:text-lg">Apa wujud zat dari <strong>${q.item}</strong>?</p>
+        <div class="flex flex-col items-start gap-3">
+          ${q.options.map(opt => `
+            <label class="bg-blue-100 hover:bg-blue-200 w-full px-4 py-2 rounded cursor-pointer text-base md:text-lg">
+              <input type="radio" name="answer" value="${opt}" class="mr-2"> ${opt}
+            </label>`).join('')}
+        </div>
+        <button onclick="checkAnswer()" class="mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full">Jawab</button>
+        <div id="feedback" class="mt-4 text-center font-semibold"></div>
+      `;
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="answer"]:checked');
+      const feedback = document.getElementById("feedback");
+      if (!selected) {
+        feedback.textContent = "Silakan pilih jawaban terlebih dahulu.";
+        feedback.className = "text-yellow-600 font-semibold mt-4";
+        return;
+      }
+
+      const answer = questions[currentQuestion].answer;
+      const userAnswer = selected.value;
+      userAnswers[currentQuestion] = userAnswer;
+
+      if (userAnswer === answer) {
+        feedback.textContent = "✅ Jawaban Benar!";
+        feedback.className = "text-green-600 animate-bounce";
+      } else {
+        feedback.textContent = `❌ Salah. Jawaban yang benar: ${answer}`;
+        feedback.className = "text-red-600 animate-bounce";
+      }
+
+      setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+          showQuestion();
+        } else {
+          gameContainer.innerHTML = `
+            <h2 class='text-xl md:text-2xl font-bold text-center text-blue-700 mb-4'>🎉 Selamat! Kamu telah menyelesaikan semua soal.</h2>
+            <p class='text-center text-lg font-semibold mb-6'>Skor kamu: ${questions.filter((q, i) => userAnswers[i] === q.answer).length} dari ${questions.length}</p>
+            <button onclick='restartGame()' class='bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 mx-auto block'>🔁 Ulangi Game</button>
+            <a href="percobaan-esputer.html" class="block mt-6 text-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🧪 Lihat Percobaan Es Puter</a>
+          `;
+        }
+      }, 2000);
+    }
+
+    function restartGame() {
+      currentQuestion = 0;
+      userAnswers = [];
+      showQuestion();
+    }
+  </script>
+</body>
+</html>
