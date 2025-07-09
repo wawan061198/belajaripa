@@ -27,8 +27,8 @@
     
     <h1 class="text-3xl font-bold text-blue-800 mb-4 animate-bounce">Selamat Datang di Game Wujud Zat!</h1>
     <button onclick="startGame()" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">Mulai Game</button>
-    <button onclick="window.location.href='file:///C:/Users/Acer/Downloads/IPA%20wujud%20zat/penjelasan_wujud_zat.html'" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-transform transform hover:scale-105">📘 Lihat Penjelasan Wujud Zat</button>
-    <a href='file:///C:/Users/Acer/Downloads/IPA%20wujud%20zat/percobaan_esputer.html'" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-transform transform hover:scale-105">🧪 Lihat Percobaan Es Puter</a>
+    <button onclick="window.location.href='penjelasan_wujud_zat.html'" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-transform transform hover:scale-105">📘 Lihat Penjelasan Wujud Zat</button>
+    <a href='percobaan_esputer.html'" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-transform transform hover:scale-105">🧪 Lihat Percobaan Es Puter</a>
   </div>
 
   <div id="game-container" class="bg-white rounded-xl shadow-xl p-6 w-full max-w-md fade-in animate__animated animate__fadeIn hidden">
@@ -103,7 +103,7 @@
             <h2 class='text-xl md:text-2xl font-bold text-center text-blue-700 mb-4'>🎉 Selamat! Kamu telah menyelesaikan semua soal.</h2>
             <p class='text-center text-lg font-semibold mb-6'>Skor kamu: ${questions.filter((q, i) => userAnswers[i] === q.answer).length} dari ${questions.length}</p>
             <button onclick='restartGame()' class='bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 mx-auto block'>🔁 Ulangi Game</button>
-            <a href="percobaan-esputer.html" class="block mt-6 text-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🧪 Lihat Percobaan Es Puter</a>
+            <a href="percobaan_esputer.html" class="block mt-6 text-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🧪 Lihat Percobaan Es Puter</a>
           `;
         }
       }, 2000);
