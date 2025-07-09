@@ -6,7 +6,7 @@ Game ini dirancang untuk membantu siswa memahami **tiga wujud zat** — padat, c
 ## 🔗 Mulai Game
 Klik tombol di bawah ini untuk memainkan game:
 
-👉 [Mulai Game Interaktif Wujud Zat](./game-wujud-zat.html)
+👉 [Mulai Game Interaktif Wujud Zat](game_wujud_zat.html)
 
 ## 📚 Fitur
 - ✅ Penjelasan lengkap tentang **zat padat, cair, dan gas**
@@ -16,10 +16,10 @@ Klik tombol di bawah ini untuk memainkan game:
 - ✅ Terhubung ke halaman percobaan dan penjelasan
 
 ## 📁 Struktur Halaman
-- `index.html` – Beranda utama
-- `game-wujud-zat.html` – Game utama
-- `wujud-zat.html` – Penjelasan teori
-- `percobaan-esputer.html` – Percobaan es puter sederhana
+- `game_wujud_zat.html` – Beranda utama
+- `game_wujud_zat.html` – Game utama
+- `penjelasan_wujud_zat.html` – Penjelasan materi
+- `percobaan_esputer.html` – Percobaan es puter sederhana
 
 ## 🧑‍🏫 Cocok Untuk
 - Guru IPA SD kelas 4
@@ -27,7 +27,7 @@ Klik tombol di bawah ini untuk memainkan game:
 - Materi perubahan wujud zat dalam Kurikulum Merdeka
 
 ## 💡 Cara Menggunakan
-1. Buka `index.html` di browser (disarankan Chrome/Edge).
+1. Buka `game_wujud_zat.html` di browser (disarankan Chrome/Edge).
 2. Klik "Mulai Game".
 3. Ikuti soal dan pilih jawaban yang tepat.
 4. Selesai? Lihat kembali penjelasan atau percobaan es puter!
